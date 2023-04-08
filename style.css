@@ -52,8 +52,7 @@ body {
   width: 100%;
 }
 
-/* Header Start */
-
+/* #region Header */
 #header {
   display: flex;
   align-items: center;
@@ -108,8 +107,9 @@ body {
   bottom: -4px;
   left: 20px;
 }
+/*#endregion */
 
-/* Home Page */
+/*#region Home Page */
 #hero{
   background-image: url("./img/hero4.png");
   height: 90vh;
@@ -142,3 +142,4 @@ body {
   font-weight: 700;
   font-size: 15px;
 }
+/* #endregion */
