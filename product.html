@@ -39,13 +39,13 @@
     <section id="product-details" class="section-p1">
       <div class="single-product-image">
         <!-- This could be dynamic -->
-        <img src="img/products/f1.jpg" width="100%" id="MainImg" alt="" />
+        <img id="productImage" src="" width="100%" id="MainImg" alt="" />
       </div>
 
       <div class="single-product-details">
-        <h6>Home / T-Shirt</h6>
-        <h4>Men's Fashion T Shirt</h4>
-        <h2>$139.00</h2>
+        <h6 id="productBrand"></h6>
+        <h4 id="productName"></h4>
+        <h2 id="productPrice"></h2>
         <select>
           <option>Select Size</option>
           <option>XL</option>
@@ -129,6 +129,23 @@
         </div>
       </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script src="script.js">
+      
+    </script>
+
+    <script>
+      //Get the stored data from local storage
+      const storedData = JSON.parse(localStorage.getItem("ProductData"));
+
+      // Populate the HTML elements with the stored data
+      document.getElementById("productImage").src =
+        "img/products/" + storedData.imageName;
+      document.getElementById("productName").innerHTML = storedData.productName;
+      document.getElementById("productBrand").innerHTML =
+        storedData.productBrand;
+      document.getElementById("productPrice").innerHTML =
+        storedData.productPrice;
+    </script>
   </body>
 </html>
