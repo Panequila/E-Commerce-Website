@@ -15,12 +15,12 @@ if (clos) {
   });
 }
 
-
 function PassProduct(element) {
-
   console.log(element);
 
   // Get the classes of the product by using querySelector.
+  const productID = element.getAttribute("id");
+
   const productImage = element.querySelector(".productImage").src;
   const imageName = productImage.substring(productImage.lastIndexOf("/") + 1);
 
@@ -28,13 +28,15 @@ function PassProduct(element) {
   const productName = element.querySelector(".productName").innerText;
   const productPrice = element.querySelector(".productPrice").innerText;
 
+  console.log(productID);
   console.log(imageName);
   console.log(productBrand);
   console.log(productName);
   console.log(productPrice);
 
   // Create an object to store the data
-  const data = {
+  const itemClicked = {
+    productID: productID,
     imageName: imageName,
     productBrand: productBrand,
     productName: productName,
@@ -42,21 +44,59 @@ function PassProduct(element) {
   };
 
   // Store the data in local storage
-  localStorage.setItem("ProductData", JSON.stringify(data));
-  
+  localStorage.setItem("ProductData", JSON.stringify(itemClicked));
+
   // Redirect to the new page with the URL
   window.location.href = "product.html";
 }
 
-function Add(){
+var counter = 0;
+var cartData = [];
+
+function AddToCart(element) {
+  // Store the data in local storage
+  const storedData = JSON.parse(localStorage.getItem("ProductData"));
+
+  const productDiv = document.getElementById("productID");
+  const _productID = element.getAttribute("id");
+
+  const _productQuantity = document.getElementById("productQuantity").value;
+  const _productPrice = document.getElementById("productPrice").innerText;
+  const _productImage = document.getElementById("productImage").src;
+  const _productName = document.getElementById("productName").innerText;
+
+  const _imageName = _productImage.substring(
+    _productImage.lastIndexOf("/") + 1
+  );
 
 
-    const quant= document.getElementById("quant").value
-    console.log(quant);
- 
-    localStorage.setItem("Produc",quant );
-   localStorage.getItem("Produc")
-    
-   window.location.href = "cart.html";
+  // Check if product ID already exists in cartData
+  const productIndex = cartData.findIndex(
+    (product) => product.productID === _productID
+  );
+
+  console.log()
+  if (productIndex === -1) {
+    // Product ID is not found in cartData, so push new product object
+    cartData.push({
+      productID: _productID,
+      productQuantity: _productQuantity,
+      productPrice: _productPrice,
+      imageName: _imageName,
+      productName: _productName,
+    });
+    console.log("product added");
+  } else {
+    // Product ID already exists in cartData, so update existing product quantity and price
+    cartData[productIndex].productQuantity += productQuantity;
+    console.log("already exists, so increase quantity");
+
+
+  }
+
+  counter++;
+
+  localStorage.setItem("CartData", JSON.stringify(cartData));
+
+  //window.location.href = "cart.html";
 }
-

@@ -42,22 +42,12 @@
         <img id="productImage" src="" width="100%" id="MainImg" alt="" />
       </div>
 
-      <div class="single-product-details">
+      <div class="single-product-details" id="productID">
         <h6 id="productBrand"></h6>
         <h4 id="productName"></h4>
         <h2 id="productPrice"></h2>
-        <select>
-          <option>Select Size</option>
-          <option>XL</option>
-          <option>XXL</option>
-          <option>Small</option>
-          <option>Large</option>
-        </select>
-        <input type="number" value="1" id="quant" />
-
-       <button class="normal" onclick="Add()" >Add To Cart</button>
-    
-       
+        <input type="number" value="1" id="productQuantity" />
+        <button class="normal" onclick="AddToCart(productID)">Add To Cart</button>
         <h4>Product Details</h4>
         <span
           >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
@@ -133,15 +123,17 @@
       </div>
     </footer>
 
-    <script src="script.js">
-      
-    </script>
+    <script src="script.js"></script>
 
     <script>
       //Get the stored data from local storage
       const storedData = JSON.parse(localStorage.getItem("ProductData"));
 
       // Populate the HTML elements with the stored data
+
+      const productID = document.getElementById("productID");
+      productID.setAttribute("id", storedData.productID);
+
       document.getElementById("productImage").src =
         "img/products/" + storedData.imageName;
       document.getElementById("productName").innerHTML = storedData.productName;
@@ -149,6 +141,7 @@
         storedData.productBrand;
       document.getElementById("productPrice").innerHTML =
         storedData.productPrice;
+
     </script>
   </body>
 </html>
