@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
+  <body onload="LoadCartData()">
     <!-- Navbar Section -->
     <section id="header">
       <a href="#"><img src="./img/logo.png" class="logo" alt="" /></a>
@@ -153,50 +153,46 @@
     <script src="script.js"></script>
 
     <script>
-      //Get the stored data from local storage
-      const storedData = JSON.parse(localStorage.getItem("CartData"));
+      function LoadCartData() {
+        //Get the stored data from local storage
+        const storedData = JSON.parse(localStorage.getItem("CartData"));
+
+        for (let index = 0; index < storedData.length; index++) {
+          console.log(index);
+          console.log(storedData[index]);
+          var cardList = document.getElementsByName("cardList").value;
+
+          var tr = document.createElement("tr");
+          tr.setAttribute("id", "tableRow");
+
+          var td1 = tr.appendChild(document.createElement("td"));
+
+          var a = td1.appendChild(document.createElement("a"));
+          a.href = "#";
+          var i = td1.appendChild(document.createElement("i"));
+          i.className = "far fa-times-circle";
+
+          var td2 = tr.appendChild(document.createElement("td"));
+          var img = td2.appendChild(document.createElement("img"));
+          console.log(storedData[index].imageName);
+          img.src = "img/products/" + storedData[index].imageName;
+
+          var td3 = tr.appendChild(document.createElement("td"));
+          td3.innerHTML = storedData[index].productName;
+
+          var td4 = tr.appendChild(document.createElement("td"));
+          td4.innerHTML = storedData[index].productPrice;
+
+          var td5 = tr.appendChild(document.createElement("td"));
+          var input = td5.appendChild(document.createElement("input"));
+          input.setAttribute("value" , storedData[index].productQuantity);
+          input.setAttribute("type" , "number");
 
 
-      var cardList = document.getElementsByName("cardList").value;
-
-      var tr = document.createElement("tr");
-      tr.setAttribute("id", "tableRow");
-
-      var td = tr.appendChild(document.createElement("td"));
-
-      var a = td.appendChild(document.createElement("a"));
-      a.href = "#";
-      var i = td.appendChild(document.createElement("i"));
-      i.className = "far fa-times-circle";
-
-      var td = tr.appendChild(document.createElement("td"));
-      var img = td.appendChild(document.createElement("img"));
-      img.src = "img/products/" + storedData.imageName;
-
-      var td = tr.appendChild(document.createElement("td"));
-      td.innerHTML = storedData.productName;
-
-      var td = tr.appendChild(document.createElement("td"));
-      td.innerHTML = storedData.productPrice;
-
-      document.getElementById("cardList").appendChild(tr);
-      document.getElementById("tableRow").appendChild(td);
-
-      //       upload.addEventListener("click", (eo) => {
-      //   eo.preventDefault();
-      //   if ((eo.target.className = "icon-upload")) {
-      //     const conan = `<div class="task">
-      //       <span class="icon-star icon"></span>
-      //       <p class="test" lang="ar">${input.value}</p>
-      //       <div>
-      //         <span class="icon-trash icon"></span>
-      //         <span class="icon-angry2 icon"></span>
-      //       </div>
-      //     </div>`;
-      //     bard.innerHTML += conan;
-      //     input.value = "";
-      //   }
-      // });
+          document.getElementById("cardList").appendChild(tr);
+          //document.getElementById("tableRow").appendChild(td);
+        }
+      }
     </script>
   </body>
 </html>

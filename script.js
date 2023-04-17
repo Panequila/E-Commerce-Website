@@ -50,16 +50,15 @@ function PassProduct(element) {
   window.location.href = "product.html";
 }
 
-var counter = 0;
 var cartData = [];
+var counter = 0;
 
 function AddToCart(element) {
-  // Store the data in local storage
-  const storedData = JSON.parse(localStorage.getItem("ProductData"));
+  
+  cartDataObject = JSON.parse(localStorage.getItem("CartData"));
+  cartData = Array.from(cartDataObject);
 
-  const productDiv = document.getElementById("productID");
   const _productID = element.getAttribute("id");
-
   const _productQuantity = document.getElementById("productQuantity").value;
   const _productPrice = document.getElementById("productPrice").innerText;
   const _productImage = document.getElementById("productImage").src;
@@ -69,15 +68,23 @@ function AddToCart(element) {
     _productImage.lastIndexOf("/") + 1
   );
 
+  // Check if product ID already exists in cartData, if not create the first one.
+  if (cartData !== null) {
+    var productIndex = cartData.findIndex(
+      (product) => product.productID === _productID
+    );
+  } else {
+    cartData = {
+      productID: _productID,
+      productQuantity: _productQuantity,
+      productPrice: _productPrice,
+      imageName: _imageName,
+      productName: _productName,
+    };
+  }
 
-  // Check if product ID already exists in cartData
-  const productIndex = cartData.findIndex(
-    (product) => product.productID === _productID
-  );
-
-  console.log()
   if (productIndex === -1) {
-    // Product ID is not found in cartData, so push new product object
+    // Product ID is not found in cartData, so push new products to the one we created above.
     cartData.push({
       productID: _productID,
       productQuantity: _productQuantity,
@@ -85,18 +92,19 @@ function AddToCart(element) {
       imageName: _imageName,
       productName: _productName,
     });
+
     console.log("product added");
   } else {
-    // Product ID already exists in cartData, so update existing product quantity and price
-    cartData[productIndex].productQuantity += productQuantity;
-    console.log("already exists, so increase quantity");
-
-
+    // Product ID already exists in cartData, so update existing product quantity.
+    // cartData[productIndex].productPrice += parseInt(productPrice);
+    // cartData[productIndex].productQuantity += parseInt(productQuantity);
+    console.log("already exists, so increase quantity and price");
   }
-
-  counter++;
 
   localStorage.setItem("CartData", JSON.stringify(cartData));
 
-  //window.location.href = "cart.html";
+  window.location.href = "cart.html";
 }
+
+//localStorage.clear();
+
