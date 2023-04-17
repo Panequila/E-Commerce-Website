@@ -43,7 +43,20 @@ function PassProduct(element) {
 
   // Store the data in local storage
   localStorage.setItem("ProductData", JSON.stringify(data));
-
+  
   // Redirect to the new page with the URL
   window.location.href = "product.html";
 }
+
+function Add(){
+
+
+    const quant= document.getElementById("quant").value
+    console.log(quant);
+ 
+    localStorage.setItem("Produc",quant );
+   localStorage.getItem("Produc")
+    
+   window.location.href = "cart.html";
+}
+
