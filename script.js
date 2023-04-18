@@ -56,8 +56,10 @@ var counter = 0;
 function AddToCart(element) {
   
   cartDataObject = JSON.parse(localStorage.getItem("CartData"));
-  cartData = Array.from(cartDataObject);
-
+  if(cartDataObject !== null){
+    cartData = Array.from(cartDataObject);
+  }
+  
   const _productID = element.getAttribute("id");
   const _productQuantity = document.getElementById("productQuantity").value;
   const _productPrice = document.getElementById("productPrice").innerText;
@@ -105,6 +107,14 @@ function AddToCart(element) {
 
   window.location.href = "cart.html";
 }
+
+var removeProduct =document.querySelector(".aa");
+removeProduct.addEventListener("click",(eo) => {
+  if (eo.target.className == "far fa-times-circle") {
+    eo.target.parentElement.parentElement.parentElement.remove();
+  } 
+})
+
 
 //localStorage.clear();
 

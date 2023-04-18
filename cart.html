@@ -56,7 +56,7 @@
         </thead>
         <tbody id="cardList">
           <tr>
-            <td><a href="#"></a><i class="far fa-times-circle"></i></td>
+            <td><a href="#" class="aa"><i class="far fa-times-circle" onclick="removeProduct()"></i></a></td>
             <td><img src="img/products/f1.jpg" /></td>
             <td>Cartoon Astronaut T-Shirt</td>
             <td>$100</td>
@@ -156,6 +156,7 @@
       function LoadCartData() {
         //Get the stored data from local storage
         const storedData = JSON.parse(localStorage.getItem("CartData"));
+        console.log(storedData)
 
         for (let index = 0; index < storedData.length; index++) {
           console.log(index);
@@ -169,7 +170,7 @@
 
           var a = td1.appendChild(document.createElement("a"));
           a.href = "#";
-          var i = td1.appendChild(document.createElement("i"));
+          var i = a.appendChild(document.createElement("i"));
           i.className = "far fa-times-circle";
 
           var td2 = tr.appendChild(document.createElement("td"));
@@ -188,9 +189,13 @@
           input.setAttribute("value" , storedData[index].productQuantity);
           input.setAttribute("type" , "number");
 
-
           document.getElementById("cardList").appendChild(tr);
           //document.getElementById("tableRow").appendChild(td);
+
+
+          const productID = document.getElementById("productID");
+      productID.setAttribute("id", storedData.productID);
+
         }
       }
     </script>
