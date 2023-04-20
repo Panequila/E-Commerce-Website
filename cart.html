@@ -16,7 +16,7 @@
   <body onload="LoadCartData()">
     <!-- Navbar Section -->
     <section id="header">
-      <a href="#"><img src="./img/logo.png" class="logo" alt="" /></a>
+      <a href="#"><img  class="logo" alt="" /></a>
       <div>
         <ul id="navbar">
           <li><a href="index.html">Home</a></li>
@@ -55,13 +55,6 @@
           </tr>
         </thead>
         <tbody id="cardList">
-          <tr>
-            <td><a href="#" class="aa"><i class="far fa-times-circle" onclick="removeProduct()"></i></a></td>
-            <td><img src="img/products/f1.jpg" /></td>
-            <td>Cartoon Astronaut T-Shirt</td>
-            <td>$100</td>
-            <td><input type="number" value="1" /></td>
-          </tr>
         </tbody>
       </table>
     </section>
@@ -76,18 +69,17 @@
       </div>
       <div id="subtotal">
         <h3>Cart Totals</h3>
-        <table>
-          <tr>
-            <td>Cart Subtotal</td>
-            <td>$300</td>
-          </tr>
+        <table id="price" style="margin-bottom: 0;">
+          
+        </table>
+        <table style="border-top:none ;">
           <tr>
             <td>Shopping</td>
             <td>Free</td>
           </tr>
           <tr>
             <td><strong>Total</strong></td>
-            <td><strong>$300</strong></td>
+            <td><strong id="total"></strong></td>
           </tr>
         </table>
         <button class="normal">Product to Checkout</button>
@@ -97,7 +89,7 @@
     <!-- footer section -->
     <footer class="section-p1">
       <div class="col">
-        <img class="logo" src="img/logo.png" />
+      
         <h4>Contact</h4>
         <p><strong>Address:</strong> Egypt , cairo , Giza</p>
         <p><strong>Phone:</strong> 01056070810</p>
@@ -153,12 +145,14 @@
     <script src="script.js"></script>
 
     <script>
+      var addTotal =0;
       function LoadCartData() {
         //Get the stored data from local storage
         const storedData = JSON.parse(localStorage.getItem("CartData"));
         console.log(storedData)
 
         for (let index = 0; index < storedData.length; index++) {
+
           console.log(index);
           console.log(storedData[index]);
           var cardList = document.getElementsByName("cardList").value;
@@ -169,9 +163,11 @@
           var td1 = tr.appendChild(document.createElement("td"));
 
           var a = td1.appendChild(document.createElement("a"));
-          a.href = "#";
+          a.href = "#"
+          a.className="aa"
+
           var i = a.appendChild(document.createElement("i"));
-          i.className = "far fa-times-circle";
+          i.className ="far fa-times-circle";
 
           var td2 = tr.appendChild(document.createElement("td"));
           var img = td2.appendChild(document.createElement("img"));
@@ -191,12 +187,26 @@
 
           document.getElementById("cardList").appendChild(tr);
           //document.getElementById("tableRow").appendChild(td);
+           
+          //get price & total
+          var total =storedData[index].productPrice;
 
+          var totalaftersplit = total.split("$");
+          var totalafterparse = Number(totalaftersplit[1]);
+      
+          var xx = addTotal += totalafterparse;
+          console.log(xx);
+          document.getElementById("price").innerHTML +=`<tr><td>Card Subtotal</td> <td>${storedData[index].productPrice}</td></tr>`
+          document.getElementById("total").innerHTML = `$`+addTotal
 
-          const productID = document.getElementById("productID");
-      productID.setAttribute("id", storedData.productID);
-
-        }
+      // const productID = document.getElementById("productID");
+      // productID.setAttribute("id", storedData.productID);
+      
+         
+    }
+      }
+      function removeProduct(i){
+        console.log(i)
       }
     </script>
   </body>

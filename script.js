@@ -59,16 +59,16 @@ function AddToCart(element) {
   if(cartDataObject !== null){
     cartData = Array.from(cartDataObject);
   }
-  
   const _productID = element.getAttribute("id");
   const _productQuantity = document.getElementById("productQuantity").value;
   const _productPrice = document.getElementById("productPrice").innerText;
   const _productImage = document.getElementById("productImage").src;
   const _productName = document.getElementById("productName").innerText;
-
+  
   const _imageName = _productImage.substring(
     _productImage.lastIndexOf("/") + 1
   );
+  
 
   // Check if product ID already exists in cartData, if not create the first one.
   if (cartData !== null) {
@@ -102,19 +102,21 @@ function AddToCart(element) {
     // cartData[productIndex].productQuantity += parseInt(productQuantity);
     console.log("already exists, so increase quantity and price");
   }
-
+  
+  
   localStorage.setItem("CartData", JSON.stringify(cartData));
-
+  
   window.location.href = "cart.html";
+
 }
 
-var removeProduct =document.querySelector(".aa");
-removeProduct.addEventListener("click",(eo) => {
-  if (eo.target.className == "far fa-times-circle") {
-    eo.target.parentElement.parentElement.parentElement.remove();
-  } 
-})
+// var removeProduct =document.querySelector(".aa");
+// removeProduct.addEventListener("click",(eo) => {
+//   if (eo.target.className == "far fa-times-circle") {
+//     eo.target.parentElement.parentElement.parentElement.remove();
+//   } 
+// })
 
 
-//localStorage.clear();
+//localStorage.removeItem();
 
