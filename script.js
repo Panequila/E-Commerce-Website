@@ -118,5 +118,5 @@ function AddToCart(element) {
 // })
 
 
-//localStorage.removeItem();
+//localStorage.clear();
 
