@@ -14,16 +14,13 @@
   </head>
 
   <body>
-    <!-- Navbar Section -->
+    <!-- Navbar Section - Ramez -->
     <section id="header">
-      <a href="#"><img src="./img/logo.png" class="logo" alt="" /></a>
+      <a href="#"><img src="" class="logo" alt="" /></a>
       <div>
         <ul id="navbar">
           <li><a href="index.html">Home</a></li>
           <li><a class="active" href="shop.html">Shop</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
           <li id="lg-bag">
             <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
           </li>
@@ -36,6 +33,7 @@
       </div>
     </section>
 
+    <!-- Products Section - Ramez -->
     <section id="product-details" class="section-p1">
       <div class="single-product-image">
         <!-- This could be dynamic -->
@@ -47,7 +45,9 @@
         <h4 id="productName"></h4>
         <h2 id="productPrice"></h2>
         <input type="number" value="1" id="productQuantity" />
-        <button class="normal" onclick="AddToCart(productID)">Add To Cart</button>
+        <button class="normal" onclick="AddToCart(productID)">
+          Add To Cart
+        </button>
         <h4>Product Details</h4>
         <span
           >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
@@ -58,6 +58,7 @@
       </div>
     </section>
 
+    <!-- New Section - Ahmed -->
     <section id="newsletter" class="section-p1 section-m1">
       <div class="newstext">
         <h4>Sign Up For newsletter</h4>
@@ -72,7 +73,7 @@
       </div>
     </section>
 
-    <!-- footer section -->
+    <!-- Footer Section - Amir -->
     <footer class="section-p1">
       <div class="col">
         <h4>Contact</h4>
@@ -121,28 +122,12 @@
         </div>
       </div>
     </footer>
-
+    <script
+      src="https://kit.fontawesome.com/9bf21babf0.js"
+      crossorigin="anonymous"
+    ></script>
+    
     <script src="script.js"></script>
-
-    <script>
-      //Get the stored data from local storage
-      const storedData = JSON.parse(localStorage.getItem("ProductData"));
-
-      // Populate the HTML elements with the stored data
-
-       const productID = document.getElementById("productID");
-       productID.setAttribute("id", storedData.productID);
-
-      document.getElementById("productImage").src =
-        "img/products/" + storedData.imageName;
-      document.getElementById("productName").innerHTML = storedData.productName;
-      document.getElementById("productBrand").innerHTML =
-        storedData.productBrand;
-      document.getElementById("productPrice").innerHTML =
-        storedData.productPrice;
-
-        console.log(storedData);
-
-    </script>
+    <script src="product.js"></script>
   </body>
 </html>

@@ -14,16 +14,13 @@
   </head>
 
   <body onload="LoadCartData()">
-    <!-- Navbar Section -->
+    <!-- Navbar Section - Ramez -->
     <section id="header">
-      <a href="#"><img  class="logo" alt="" /></a>
+      <a href="#"><img class="logo" alt="" /></a>
       <div>
         <ul id="navbar">
           <li><a href="index.html">Home</a></li>
           <li><a href="shop.html">Shop</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
           <li id="lg-bag">
             <a class="active" href="cart.html"
               ><i class="fa-solid fa-bag-shopping"></i
@@ -38,11 +35,13 @@
       </div>
     </section>
 
+    <!-- Header Section - Amir -->
     <section id="page-header" class="card-header">
       <h2>#cart</h2>
       <p>Add your coupon code $ SAVE upto 70%!</p>
     </section>
 
+    <!-- Cart Sections - Amir -->
     <section id="cart" class="section-p1">
       <table width="100%">
         <thead>
@@ -54,8 +53,7 @@
             <td>Quantity</td>
           </tr>
         </thead>
-        <tbody id="cardList">
-        </tbody>
+        <tbody class="cardList"></tbody>
       </table>
     </section>
 
@@ -69,12 +67,10 @@
       </div>
       <div id="subtotal">
         <h3>Cart Totals</h3>
-        <table id="price" style="margin-bottom: 0;">
-          
-        </table>
-        <table style="border-top:none ;">
+        <table id="price" style="margin-bottom: 0"></table>
+        <table style="border-top: none">
           <tr>
-            <td>Shopping</td>
+            <td>Shipping</td>
             <td>Free</td>
           </tr>
           <tr>
@@ -86,10 +82,9 @@
       </div>
     </section>
 
-    <!-- footer section -->
+    <!-- Footer Section - Amir -->
     <footer class="section-p1">
       <div class="col">
-      
         <h4>Contact</h4>
         <p><strong>Address:</strong> Egypt , cairo , Giza</p>
         <p><strong>Phone:</strong> 01056070810</p>
@@ -142,72 +137,7 @@
       src="https://kit.fontawesome.com/9bf21babf0.js"
       crossorigin="anonymous"
     ></script>
-    <script src="script.js"></script>
 
-    <script>
-      var addTotal =0;
-      function LoadCartData() {
-        //Get the stored data from local storage
-        const storedData = JSON.parse(localStorage.getItem("CartData"));
-        console.log(storedData)
-
-        for (let index = 0; index < storedData.length; index++) {
-
-          console.log(index);
-          console.log(storedData[index]);
-          var cardList = document.getElementsByName("cardList").value;
-
-          var tr = document.createElement("tr");
-          tr.setAttribute("id", "tableRow");
-
-          var td1 = tr.appendChild(document.createElement("td"));
-
-          var a = td1.appendChild(document.createElement("a"));
-          a.href = "#"
-          a.className="aa"
-
-          var i = a.appendChild(document.createElement("i"));
-          i.className ="far fa-times-circle";
-
-          var td2 = tr.appendChild(document.createElement("td"));
-          var img = td2.appendChild(document.createElement("img"));
-          console.log(storedData[index].imageName);
-          img.src = "img/products/" + storedData[index].imageName;
-
-          var td3 = tr.appendChild(document.createElement("td"));
-          td3.innerHTML = storedData[index].productName;
-
-          var td4 = tr.appendChild(document.createElement("td"));
-          td4.innerHTML = storedData[index].productPrice;
-
-          var td5 = tr.appendChild(document.createElement("td"));
-          var input = td5.appendChild(document.createElement("input"));
-          input.setAttribute("value" , storedData[index].productQuantity);
-          input.setAttribute("type" , "number");
-
-          document.getElementById("cardList").appendChild(tr);
-          //document.getElementById("tableRow").appendChild(td);
-           
-          //get price & total
-          var total =storedData[index].productPrice;
-
-          var totalaftersplit = total.split("$");
-          var totalafterparse = Number(totalaftersplit[1]);
-      
-          var xx = addTotal += totalafterparse;
-          console.log(xx);
-          document.getElementById("price").innerHTML +=`<tr><td>Card Subtotal</td> <td>${storedData[index].productPrice}</td></tr>`
-          document.getElementById("total").innerHTML = `$`+addTotal
-
-      // const productID = document.getElementById("productID");
-      // productID.setAttribute("id", storedData.productID);
-      
-         
-    }
-      }
-      function removeProduct(i){
-        console.log(i)
-      }
-    </script>
+    <script src="cart.js"></script>
   </body>
 </html>
